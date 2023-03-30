@@ -321,8 +321,7 @@ class _NewTripPageState extends State<NewTripPage> {
 
   void acceptiTrip() {
     String rideId = widget.tripDetail.rideId!;
-    rideRef =
-        FirebaseDatabase.instance.reference().child("rideRequest/$rideId");
+    rideRef = FirebaseDatabase.instance.ref().child("rideRequest/$rideId");
     rideRef!.child("status").set("accepted");
     rideRef!.child("driver_name").set(currentDricerInfo!.fullName);
     rideRef!
@@ -336,7 +335,7 @@ class _NewTripPageState extends State<NewTripPage> {
     };
     rideRef!.child("driver_location").set(locationMap);
     DatabaseReference historyRefrence = FirebaseDatabase.instance
-        .reference()
+        .ref()
         .child("drivers/${currentFirebaseUser!.uid}/history/$rideId");
     historyRefrence.set("true");
   }
@@ -472,7 +471,7 @@ class _NewTripPageState extends State<NewTripPage> {
 
   void topUpEarnngs(int fares) {
     DatabaseReference earningrefrence = FirebaseDatabase.instance
-        .reference()
+        .ref()
         .child("drivers/${currentFirebaseUser!.uid}/earnings");
     earningrefrence.once().then((DatabaseEvent snapshot) {
       if (snapshot.snapshot.value != null) {

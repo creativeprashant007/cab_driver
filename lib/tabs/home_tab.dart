@@ -94,7 +94,7 @@ class _HomeTabState extends State<HomeTab> {
 
     pushNotificationService().initialize(context);
     DatabaseReference driverRef = FirebaseDatabase.instance
-        .reference()
+        .ref()
         .child("drivers/${currentFirebaseUser!.uid}");
     driverRef.once().then((DatabaseEvent snapshot) {
       currentDricerInfo = Driver.fromSnapshot(snapshot.snapshot);
@@ -188,7 +188,7 @@ class _HomeTabState extends State<HomeTab> {
       currentPosition!.longitude,
     );
     tripRequestRef = FirebaseDatabase.instance
-        .reference()
+        .ref()
         .child('drivers/${currentFirebaseUser!.uid}/newtrip');
     tripRequestRef!.set('waiting');
     tripRequestRef!.onValue.listen((event) {});

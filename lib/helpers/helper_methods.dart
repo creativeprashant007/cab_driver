@@ -23,7 +23,7 @@ class HelperMethods {
   //   currentFirebaseUser = firebase.FirebaseAuth.instance.currentUser!;
   //   String userId = currentFirebaseUser!.uid;
   //   DatabaseReference databaseReference =
-  //       FirebaseDatabase.instance.reference().child('users/$userId');
+  //       FirebaseDatabase.instance.ref().child('users/$userId');
   //   databaseReference.once().then((DataSnapshot snapshot) {
   //     if (snapshot.value != null) {
   //       currentUserInfo = User.fromSnapsot(snapshot);
@@ -141,7 +141,7 @@ class HelperMethods {
 
   static void getHistoryInfo({BuildContext? context}) {
     DatabaseReference earningInfo = FirebaseDatabase.instance
-        .reference()
+        .ref()
         .child("drivers/${currentFirebaseUser!.uid}/earnings");
     earningInfo.once().then((DatabaseEvent snapshot) {
       if (snapshot.snapshot.value != null) {
@@ -150,7 +150,7 @@ class HelperMethods {
       }
     });
     DatabaseReference historyRef = FirebaseDatabase.instance
-        .reference()
+        .ref()
         .child("drivers/${currentFirebaseUser!.uid}/history");
     historyRef.once().then((DatabaseEvent snapshot) {
       if (snapshot.snapshot.value != null) {
@@ -173,7 +173,7 @@ class HelperMethods {
     var keys = Provider.of<AppData>(context!, listen: false).tripHistoryKeys;
     for (String key in keys) {
       DatabaseReference historyRef =
-          FirebaseDatabase.instance.reference().child("rideRequest/$key");
+          FirebaseDatabase.instance.ref().child("rideRequest/$key");
       historyRef.once().then((DatabaseEvent snapshot) {
         if (snapshot.snapshot.value != null) {
           var history = History.fromSnapShot(snapshot.snapshot);
