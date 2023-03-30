@@ -13,12 +13,13 @@ class AvailabilityButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RaisedButton(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(25),
-      ),
-      color: color,
-      textColor: Colors.white,
+    return ElevatedButton(
+      style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.resolveWith((states) => color),
+          shape: MaterialStateProperty.resolveWith(
+              (states) => RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ))),
       child: Container(
         height: 45.0,
         width: 200,

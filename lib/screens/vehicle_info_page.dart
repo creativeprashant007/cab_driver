@@ -189,8 +189,6 @@ class _VehicleInfoState extends State<VehicleInfo> {
         style: TextStyle(fontSize: 15.0),
       ),
     );
-    _scffoldkey.currentState!.showSnackBar(
-      snackBar,
-    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }

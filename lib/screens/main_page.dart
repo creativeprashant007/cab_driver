@@ -60,22 +60,11 @@ class _MainPageState extends State<MainPage>
         onTap: onItemTap,
         currentIndex: selectedIndex,
         items: [
+          BottomNavigationBarItem(icon: Icon(OMIcons.home), label: 'Home'),
           BottomNavigationBarItem(
-            icon: Icon(OMIcons.home),
-            title: Text('Home'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(OMIcons.creditCard),
-            title: Text('Earnings'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(OMIcons.star),
-            title: Text('Ratings'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(OMIcons.person),
-            title: Text('Account'),
-          ),
+              icon: Icon(OMIcons.creditCard), label: 'Earnings'),
+          BottomNavigationBarItem(icon: Icon(OMIcons.star), label: 'Ratings'),
+          BottomNavigationBarItem(icon: Icon(OMIcons.person), label: 'Account'),
         ],
         unselectedItemColor: BrandColors.colorIcon,
         selectedItemColor: BrandColors.colorOrange,

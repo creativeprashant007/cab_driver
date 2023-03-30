@@ -18,11 +18,11 @@ class History {
   });
 
   History.fromSnapShot(DataSnapshot snapshot) {
-    pickup = snapshot.value['pickup_address'];
-    destination = snapshot.value['destination_address'];
-    fares = snapshot.value['fares'].toString();
-    status = snapshot.value['status'];
-    paymentMethod = snapshot.value['payment_method'];
-    createdAt = snapshot.value['created_at'];
+    pickup = (snapshot.value as dynamic)['pickup_address'];
+    destination = (snapshot.value as dynamic)['destination_address'];
+    fares = (snapshot.value as dynamic)['fares'].toString();
+    status = (snapshot.value as dynamic)['status'];
+    paymentMethod = (snapshot.value as dynamic)['payment_method'];
+    createdAt = (snapshot.value as dynamic)['created_at'];
   }
 }

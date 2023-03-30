@@ -8,10 +8,10 @@ class MapKitHelper {
     double? destLng,
   }) {
     var rotation = SphericalUtil.computeHeading(
-      LatLng(sourceLat, sourceLng),
+      LatLng(sourceLat!, sourceLng!),
       LatLng(
-        destLat,
-        destLng,
+        destLat!,
+        destLng!,
       ),
     );
     return rotation.toDouble();
