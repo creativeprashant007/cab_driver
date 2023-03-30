@@ -40,7 +40,7 @@ class _NewTripPageState extends State<NewTripPage> {
   int durationCounter = 0;
   var geoLocator = Geolocator();
   var locationOptions =
-      LocationOptions(accuracy: LocationAccuracy.bestForNavigation);
+      LocationSettings(accuracy: LocationAccuracy.bestForNavigation);
   BitmapDescriptor? movingMarkerIcon;
   String durationString = "updating time....";
   String bottonTitle = "ARRIVED";
@@ -474,9 +474,9 @@ class _NewTripPageState extends State<NewTripPage> {
     DatabaseReference earningrefrence = FirebaseDatabase.instance
         .reference()
         .child("drivers/${currentFirebaseUser!.uid}/earnings");
-    earningrefrence.once().then((DataSnapshot snapshot) {
-      if (snapshot.value != null) {
-        double oldEarnings = double.parse(snapshot.value.toString());
+    earningrefrence.once().then((DatabaseEvent snapshot) {
+      if (snapshot.snapshot.value != null) {
+        double oldEarnings = double.parse(snapshot.snapshot.value.toString());
         double adjuctedFares = ((fares.toDouble()) * 0.85) + oldEarnings;
         earningrefrence.set(adjuctedFares.toStringAsFixed(2));
       } else {

@@ -171,13 +171,13 @@ class NotificationDialog extends StatelessWidget {
         .reference()
         .child('drivers/${currentFirebaseUser!.uid}/newtrip');
 
-    newRideRef.once().then((DataSnapshot snapshot) {
+    newRideRef.once().then((DatabaseEvent snapshot) {
       Navigator.of(context).pop();
       Navigator.of(context).pop();
       String thisRideID = '';
-      print("accetp snapsot ${snapshot.value}");
-      if (snapshot.value != null) {
-        thisRideID = snapshot.value.toString();
+      print("accetp snapsot ${snapshot.snapshot.value}");
+      if (snapshot.snapshot.value != null) {
+        thisRideID = snapshot.snapshot.value.toString();
       } else {
         Fluttertoast.showToast(
             msg: "Ride not found",

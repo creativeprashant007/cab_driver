@@ -29,7 +29,7 @@ class _HomeTabState extends State<HomeTab> {
   Color? availbilityColor = BrandColors.colorOrange;
   bool isAvailable = false;
   var geolocator = Geolocator();
-  var locationOptions = LocationOptions(
+  var locationOptions = LocationSettings(
       accuracy: LocationAccuracy.bestForNavigation, distanceFilter: 4);
 
   Future<dynamic> _callPermission() async {
@@ -96,8 +96,8 @@ class _HomeTabState extends State<HomeTab> {
     DatabaseReference driverRef = FirebaseDatabase.instance
         .reference()
         .child("drivers/${currentFirebaseUser!.uid}");
-    driverRef.once().then((DataSnapshot snapshot) {
-      currentDricerInfo = Driver.fromSnapshot(snapshot);
+    driverRef.once().then((DatabaseEvent snapshot) {
+      currentDricerInfo = Driver.fromSnapshot(snapshot.snapshot);
     });
   }
 
@@ -203,8 +203,10 @@ class _HomeTabState extends State<HomeTab> {
 
   void getLocationUpdate() {
     hoomeTabPostionStream = Geolocator.getPositionStream(
-      desiredAccuracy: LocationAccuracy.bestForNavigation,
-      distanceFilter: 2,
+      locationSettings: LocationSettings(
+        accuracy: LocationAccuracy.bestForNavigation,
+        distanceFilter: 2,
+      ),
     ).listen((position) {
       currentPosition = position;
 

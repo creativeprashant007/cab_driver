@@ -41,9 +41,8 @@ class EarningTab extends StatelessWidget {
     );
   }
 
-  FlatButton trips(BuildContext context) {
-    return FlatButton(
-      padding: EdgeInsets.all(0),
+  TextButton trips(BuildContext context) {
+    return TextButton(
       onPressed: () {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => HistoryPage()));

@@ -88,30 +88,30 @@ class pushNotificationService {
     print('insideDD:$rideId');
     DatabaseReference rideRef =
         FirebaseDatabase.instance.reference().child('rideRequest/$rideId');
-    rideRef.once().then((DataSnapshot snapshot) {
+    rideRef.once().then((DatabaseEvent snapshot) {
       Navigator.of(context).pop();
-      print("shapshot value${snapshot.value}");
-      if (snapshot.value != null) {
+      print("shapshot value${snapshot.snapshot.value}");
+      if (snapshot.snapshot.value != null) {
         assetAudioPlayer.open(
           audio.Audio('assets/sounds/alert.mp3'),
         );
         assetAudioPlayer.play();
 
         double pickupLat =
-            double.parse(snapshot.value['location']['latitude'].toString());
+            double.parse((snapshot.snapshot.value as dynamic)['location']['latitude'].toString());
         double pickupLng =
-            double.parse(snapshot.value['location']['longitude'].toString());
-        String pickupAddress = snapshot.value['pickup_address'].toString();
+            double.parse((snapshot.snapshot.value as dynamic)['location']['longitude'].toString());
+        String pickupAddress = (snapshot.snapshot.value as dynamic)['pickup_address'].toString();
 
         double destinationLat =
-            double.parse(snapshot.value['destination']['latitude'].toString());
+            double.parse((snapshot.snapshot.value as dynamic)['destination']['latitude'].toString());
         double destinationLng =
-            double.parse(snapshot.value['destination']['longitude'].toString());
+            double.parse((snapshot.snapshot.value as dynamic)['destination']['longitude'].toString());
         String destinationAddress =
-            snapshot.value['destination_address'].toString();
-        String paymentMethod = snapshot.value['payment_method'].toString();
-        String riderName = snapshot.value['rider_name'].toString();
-        String riderPhone = snapshot.value['rider_phone'].toString();
+            (snapshot.snapshot.value as dynamic)['destination_address'].toString();
+        String paymentMethod = (snapshot.snapshot.value as dynamic)['payment_method'].toString();
+        String riderName = (snapshot.snapshot.value as dynamic)['rider_name'].toString();
+        String riderPhone = (snapshot.snapshot.value as dynamic)['rider_phone'].toString();
 
         TripDetail tripDetail = TripDetail();
         tripDetail.rideId = rideId;
