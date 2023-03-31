@@ -139,10 +139,10 @@ class NotificationDialog extends StatelessWidget {
                       child: TexiButton(
                         title: 'ACCEPT',
                         callback: () {
-                          // assetAudioPlayer.dispose();
-                          // assetAudioPlayer.pause();
+                          assetAudioPlayer.dispose();
+                          assetAudioPlayer.pause();
                           assetAudioPlayer.stop();
-                          // assetAudioPlayer.stop();
+                          assetAudioPlayer.stop();
                           checkAvailability(context);
                         },
                         color: BrandColors.colorGreen,
